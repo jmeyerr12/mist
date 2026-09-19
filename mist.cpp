@@ -114,7 +114,6 @@ void decripta_jovi(string &s, string chave){
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-
     string nomeDoArquivo, chave;
     cout << "insira o nome do arquivo e a chave para a cifra (pode ser uma string qualquer)" << endl;
     cin >> nomeDoArquivo >> chave;
@@ -123,39 +122,24 @@ int main() {
     cout << "insira a operacao (1 para cifrar, 2 para decifrar)" << endl;
     cin >> op;
 
-    if (op != 1 && op != 2){
-        cout << "operacao invalida" << endl;
-        return 0;
-    }
-
-    if (chave.empty()){
-        cout << "a chave nao pode ser vazia" << endl;
-        return 0;
-    }
-
     ifstream entrada(nomeDoArquivo, ios::binary);
+    if (!entrada.is_open()){
+        cout << "erro ao abrir o arquivo" << endl;
+        return 0;
+    }
+
+    string s((istreambuf_iterator<char>(entrada)), istreambuf_iterator<char>());
+
+    entrada.close();
+
+    if (op == 1) encripta_jovi(s, chave);
+    else decripta_jovi(s, chave);
 
     string nomeDaResposta = (op == 1 ? "encriptado.txt" : "decriptado.txt");
     ofstream resposta(nomeDaResposta, ios::binary);
 
-    if (entrada.is_open() && resposta.is_open()){
-        string texto(
-            (istreambuf_iterator<char>(entrada)),
-            istreambuf_iterator<char>()
-        );
-
-        if (op == 1) encripta_jovi(texto, chave);
-        else decripta_jovi(texto, chave);
-
-        resposta.write(texto.data(), texto.size());
-
-        entrada.close();
-        resposta.close();
-    }
-    else{
-        cout << "erro ao abrir o arquivo, tente novamente" << endl;
-        return 0;
-    }
+    resposta.write(s.data(), s.size());
+    resposta.close();
 
     return 0;
 }
