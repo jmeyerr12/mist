@@ -1,0 +1,5 @@
+arquivo,bytes,cifragem_ms,decifragem_ms,cifragem_MBps,decifragem_MBps
+livros/gettysburg.txt,900,0.001,0.001,639.573,1111.796
+livros/raven.txt,7582,0.007,0.002,1031.492,3856.405
+livros/alice.txt,174311,0.328,0.038,506.155,4432.485
+livros/war_and_peace.txt,3359610,7.094,1.376,451.664,2328.373

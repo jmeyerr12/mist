@@ -110,7 +110,7 @@ void decripta_jovi(string &s, string chave){
         s[i] = (c - k + UTF) % UTF;
     }
 }
-
+#ifndef MIST_NO_MAIN
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
@@ -143,3 +143,4 @@ int main() {
 
     return 0;
 }
+#endif
