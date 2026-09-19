@@ -2,3 +2,6 @@
 *.out
 mist 
 .txt
+benchmark_aes
+benchmark_mist
+benchmark_rsa
